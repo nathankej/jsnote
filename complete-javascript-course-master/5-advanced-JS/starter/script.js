@@ -74,15 +74,42 @@ console.log(ages);
 console.log(fullAges);
 console.log(rates);
 
-*/
-
 function retirement(retirementAge){
     var a =' years left until retirement.';
     return function(yearOfBirth){
         var age = 2016 - yearOfBirth;
         console.log((retirementAge-age) +a); 
     }
-}
+}；
 
 var retirementUS = retirement(66);
 retirementUS(1990);
+*/
+
+function Question(question,answers,correct){
+    this.question = question;
+    this.answers = answers;
+    this.correct = correct;
+}
+
+Question.prototype.displayQuestion() {
+    console.log(this.question);
+    for (var i =0; i <this.answers.length;i++){
+        console.log(this.answers[i]);
+    }
+}
+
+var q1 = new Question('Is Javascript coolest programming language',     ['Yes','No'],
+                     0);
+
+var q2 = new Question('what is the name of this course\'s teacher?',    ['john','mike','jonas'], 2 );
+
+var q3 = new Question('What does best describe coding',   ['boring','fun','hard','teadious'],      1 );
+
+
+var questions  =  [q1, q2, q3];
+
+var number = Math.floor(Math.random()*questions.length);
+
+//console.log(number);
+questions[number];
