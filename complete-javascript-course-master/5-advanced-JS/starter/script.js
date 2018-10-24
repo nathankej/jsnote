@@ -84,32 +84,60 @@ function retirement(retirementAge){
 
 var retirementUS = retirement(66);
 retirementUS(1990);
-*/
 
-function Question(question,answers,correct){
+
+(function(){
+    function Question(question,answers,correct){
     this.question = question;
     this.answers = answers;
     this.correct = correct;
-}
-
-Question.prototype.displayQuestion() {
-    console.log(this.question);
-    for (var i =0; i <this.answers.length;i++){
-        console.log(this.answers[i]);
     }
-}
 
-var q1 = new Question('Is Javascript coolest programming language',     ['Yes','No'],
-                     0);
+    Question.prototype.displayQuestion=function() {
+        console.log(this.question);
 
-var q2 = new Question('what is the name of this course\'s teacher?',    ['john','mike','jonas'], 2 );
+        for (var i =0; i <this.answers.length; i++){
+            console.log(i+ ': '  +this.answers[i]);
+        }
+    }
 
-var q3 = new Question('What does best describe coding',   ['boring','fun','hard','teadious'],      1 );
+    Question.prototype.checkAnswer = function(ans){
+        if(ans === this.correct){
+            console.log('Correct answer.');
+        }else{
+            console.log('Wrong answer, try again');
+        }
+    }
 
+    var q1 = new Question('Is Javascript coolest programming language',     ['Yes','No'],
+                         0);
 
-var questions  =  [q1, q2, q3];
+    var q2 = new Question('what is the name of this course\'s teacher?',    ['john','mike','jonas'], 2 );
 
-var number = Math.floor(Math.random()*questions.length);
+    var q3 = new Question('What does best describe coding',   ['boring','fun','hard','teadious'],      1 );
 
-//console.log(number);
-questions[number];
+    var questions  =  [q1, q2, q3];
+    
+    function nextQuestion(){
+      
+
+        var number = Math.floor(Math.random()*questions.length);
+
+        //console.log(number);
+        questions[number].displayQuestion();
+
+        var answer = prompt('Please select the correct answer.');
+
+        //questions[number].checkAnswer(answer); 
+        
+        if(answer !== 'exit'){
+            
+            questions[number].checkAnswer(parseInt(answer));
+            nextQuestion();    
+        }
+        
+    }
+    
+    nextQuestion();
+})();
+*/
